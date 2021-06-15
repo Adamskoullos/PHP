@@ -34,4 +34,26 @@ Using double quotes is like string interpolation and dynamic variables can go st
         echo "Hello $name";
     ?>
 </h1>
+
+// Or this is another option using concatonation
+
+<h1>
+    <?php echo "Hello " . $_GET['name']; ?>
+</h1>
+
+// This can be shortened by removing the php and echo and adding an =
+
+<h1>
+    <?= "Hello " . $_GET['name']; ?>
+</h1>
+
+```
+The above example is at risk of html injection though so it is better to use a built in method:
+
+```php
+// This sanitizes any html, preventing html injection
+<h1>
+    <?= "Hello " . htmlspecialchars($_GET['name']); ?>
+</h1>
+
 ```
