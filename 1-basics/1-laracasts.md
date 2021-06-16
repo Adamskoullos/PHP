@@ -199,3 +199,108 @@ unset($person['age']);
 var_dump($person);
 
 ```
+
+# Capitalising first letter of each word
+
+```php
+<li><strong><?= ucwords($key); ?></strong>: <?= $val ?></li>
+```
+
+# Working with Booleans
+
+Just rendering the boolean value will either print nothing for false or a '1' for true. This is not much use.
+
+This is fine within an if statement but when rendering to the DOM better to use with a ternary statement:
+
+```php
+true ? 'if true do this' : 'if false do this'
+
+```
+Rather than looping through an array we can pluck specific keys and dynamically show the value of that key.
+The below example demonstrates the pattern for this as well as using the `ternary` to control what is shown:
+
+```html
+<ul>
+    <li>
+        <strong>Stack: </strong><?= $devStack['stackName']; ?>
+    </li>
+    <li>
+        <strong>Front-End Framework: </strong><?= $devStack['front-end']; ?>
+    </li>
+    <li>
+        <strong>Back-End Framework: </strong><?= $devStack['back-end']; ?>
+    </li>
+    <li>
+        <strong>Cloud Infrastructure: </strong><?= $devStack['cloud']; ?>
+    </li>
+    <li>
+        <strong>Are the team AWS Certified: </strong><?= $devStack['boolean'] ? 'All the team is AWS Cerified' : 'No AWS Cerifiication'; ?>
+    </li>
+</ul>
+
+```
+
+# Conditionals
+
+```php
+// If Statement
+<?php
+
+  if($devStack['boolean']){
+    echo 'True';
+  } else{
+    echo 'False';
+  }
+?>
+// Ternary
+<?= $devStack['boolean'] ? 'True' : 'False'; ?>
+
+```
+For the short hand `if` statement we can use the same pattern as the foreach:
+
+```php
+<?php if($devStack['boolean']) : ?>
+
+// Code to run if true or
+// Html to render if true
+
+<?php else : ?>
+
+// html to render if false
+
+<?php endif; ?>
+
+```
+
+# Functions
+
+Create a file for some kind kind of functionality and then `require` the file into `index.php` at the top of the file so it can be accessed anywhere below. Define all fucntions within the function file and then invoke them where needed.
+
+```php
+<?php
+// functions.php file
+function ageChecker($val){
+    if($val < 18){
+        return 'You are too young';
+    }
+    if($val >= 18 && $val < 61){
+        return 'You are old enough to drink';
+    }
+    if($val > 60){
+        return 'You probably should not drink at your age!';
+    }
+};
+
+// index.php file
+require 'functions.php';
+
+$result = ageChecker(70);
+
+```
+```html
+<!-- index.view.html -->
+<h1>
+    <?= $result; ?>
+</h1>
+```
+

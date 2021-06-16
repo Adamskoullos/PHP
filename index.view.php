@@ -16,6 +16,9 @@
                 <?= $greeting ?>
             </h1>
         </header>
+        <h5>
+            <?= $result; ?>
+        </h5>
         <div>
             <ul>
                 <?php foreach($names as $name) : ?>
@@ -48,6 +51,31 @@
                     <li><strong><?= $key ?></strong>: <?= $val ?></li>
 
                 <?php endforeach; ?>
+            </ul>
+            <ul>
+            <!-- ucwords() capitalises the word -->
+                <?php foreach($devStack as $key => $val) : ?>
+
+                    <li><strong><?= ucwords($key); ?></strong>: <?= $val ?></li>
+
+                <?php endforeach; ?>
+            </ul>
+            <ul>
+                <li>
+                    <strong>Stack: </strong><?= $devStack['stackName']; ?>
+                </li>
+                <li>
+                    <strong>Front-End Framework: </strong><?= $devStack['front-end']; ?>
+                </li>
+                <li>
+                    <strong>Back-End Framework: </strong><?= $devStack['back-end']; ?>
+                </li>
+                <li>
+                    <strong>Cloud Infrastructure: </strong><?= $devStack['cloud']; ?>
+                </li>
+                <li>
+                    <strong>Are the team AWS Certified: </strong><?= $devStack['boolean'] ? 'All the team is AWS Cerified' : 'No AWS Cerifiication'; ?>
+                </li>
             </ul>
         </div>
     </body>
