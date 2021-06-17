@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 8888,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "MySQL",
+            "database": "mytodo",
+            "username": "adam"
+        }
+    ]
+}
