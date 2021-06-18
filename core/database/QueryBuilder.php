@@ -1,6 +1,6 @@
 <?php
 
-require 'classes.php';
+require 'core/classes.php';
 
 class QueryBuilder
 {

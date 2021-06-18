@@ -27,7 +27,7 @@ $statement->execute();
 // $tasks = $statement->fetchAll(PDO::FETCH_OBJ);
 
 // 4.B Optional save data to class
-// Add functionality by saving the data to a class so the data can be interacted with via functions
+// Add functionality by saving the data to a class so the data can be interacted with via methods
 $tasks = $statement->fetchAll(PDO::FETCH_CLASS, 'Task');
 
 // var_dump($statement->fetchAll(PDO::FETCH_OBJ));
@@ -106,7 +106,7 @@ $pdo = connection::make();
 ```
 
 # Abstraction Level 3
-The focus here is on grouping class files into a `bootstrap.php` file take house all the class locig and extract this from `index.php`.
+The focus here is on grouping class files into a `bootstrap.php` file to house all the class locig and extract this from `index.php`.
 
 1. Create `bootstrap.php` file and import both `connection.php` and `QueryBuilder.php` class files
 
@@ -126,6 +126,7 @@ return new QueryBuilder(Connection::make());
 3. Back in `index.php` we require `bootstrap.php` saving the returned output to a variable ($query). This is used when invoking the `fetchAll` method which is accessed from `QueryBuilder`. We pass in the **table** to query and the **class** to save the fetched data to. Finally the response is saved to ($tasks) which can be used within the DOM as at the bottom of `index.php` we require `index.view.php`:   
 
 ```php
+// index.php
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
