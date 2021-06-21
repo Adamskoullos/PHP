@@ -197,6 +197,8 @@ unset($person['age']);
 
 ```php
 var_dump($person);
+print_r($person);
+echo $person;
 
 ```
 
@@ -205,6 +207,23 @@ var_dump($person);
 ```php
 <li><strong><?= ucwords($key); ?></strong>: <?= $val ?></li>
 ```
+
+# Multi-Dimension Arrays
+
+Accessing **indexed arrays** (second item in the first array):
+
+`$array[0][2]`
+
+Accessing **associative arrays** within an **indexed array**.
+Grab the title value for the first nested array:
+`$array[0]['title']` 
+
+# Array pop and push
+
+Add item to array: `$array[] = ['newItem']`
+
+Remove the last item: `$popped = array_pop($array)`
+
 
 # Working with Booleans
 
@@ -327,3 +346,116 @@ class Task{
     } 
 }
 ```
+
+
+# Session Super Globals
+
+Session super globals can be used to store and pass data between files that persist state for that session only:
+
+```php
+
+// As the user submits a form a new seesion is started and the form data is input is saved to a session super global:
+
+// Controller 
+if(isset($_POST['submit'])){
+    
+    session_start();
+
+    $SESSION['name'] = $_POST['name'];
+}
+
+// Accessing the session super global within another component
+$name = $_SESSION['name'];
+
+// Overriding session variable
+$_SESSION['name'] = 'newName';
+
+// Delete single session super global
+unset($_SESSION['name']);
+
+// Delete all session super globals
+session_unset();
+```
+
+# Null Coalescing
+
+```php
+
+$var = 'This if exists' ?? 'This if it doesnt';
+
+```
+
+# Cookies
+
+Cookies are also super globals however they are stored on the users machine instead of the sever and can be accessed each time they log into the webiste. They can be set as a user submits a form and the user input is grabbed.
+
+Arguments:
+
+1. Save as
+2. User input to be saved
+3. Time till expiry 
+
+```php
+if(isset($_POST['submit'])){
+    
+    session_start();
+
+    $SESSION['name'] = $_POST['name'];
+    // Set the cookie
+    setcookie('gender', $_POST['gender'], time() + (86400 * 5));// Store for 5 days
+}
+
+
+// Get the cookie and save to a variable to use within component
+$gender = $_COOKIE['gender'] ?? 'Unkown';
+
+```
+
+# Working with the file system
+
+Basic file methods:
+
+```php
+// Check file exists
+file_exists($file);
+
+// Read file
+readfile($file);
+
+// Copy file
+copy($file, 'newFile.txt');
+
+// Get the absolute path
+realpath($file);
+
+
+// Get file size
+filesize($file);
+
+// Rename
+rename($file, 'newName.txt');
+
+// Opeing a file for reading and create a reference
+$handle - fopen($file, 'a+'); // 'r' = read, 'r+' = read and write, 'a+' = pointer at end of file text, ready for write
+
+// Read file
+fread($handle, filesize($file)); // whole file
+
+// Read single line
+fgets($handle);
+
+// Read single character
+fgetc($handle);
+
+// Writing to a file
+fwrite($handle, )
+
+// Close file
+fclose($handle);
+
+// Delete file
+unlink($file); // The file itself, not the reference 
+```
+
+
+
