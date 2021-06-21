@@ -5,10 +5,15 @@ ini_set('display_errors', 1);
 
 $query = require 'core/database/bootstrap.php';
 
-$router =new Router;
+require 'core/Request.php';
 
-require 'routes.php';
+$uri = Request::uri();
 
-$uri = trim($_SERVER['REQUEST_URI'], '/');
+// 1. Load the routes
+$router = Router::load('routes.php');
 
-require $router->direct($uri);
+// 2. Require `routes.php`
+
+// 3. Direct to the relevant controller 
+// require $router->direct($uri);
+require $router->direct(Request::uri(), Request::method());

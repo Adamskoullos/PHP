@@ -2,7 +2,7 @@
 
 // Code to run to fetch any data ready for view
 
-$tasks = $query->fetchAll('todos', 'Task');
+$tasks = $app['database']->fetchAll('todos', 'Task');
 
 
 

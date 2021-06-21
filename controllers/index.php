@@ -3,7 +3,7 @@
 // require bootstrap.php ??
 
 // Use the query to select the data and save to a variable 
-$tasks = $query->fetchAll('todos', 'Task');
+$tasks = $app['database']->fetchAll('todos', 'Task');
 // dd($tasks);
 
 
