@@ -3,17 +3,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$query = require 'core/database/bootstrap.php';
+Require 'vendor/autoload.php';
 
-require 'core/Request.php';
+require 'core/database/bootstrap.php';
 
-$uri = Request::uri();
+// require 'core/Request.php';
 
-// 1. Load the routes
-$router = Router::load('routes.php');
 
-// 2. Require `routes.php`
-
-// 3. Direct to the relevant controller 
-// require $router->direct($uri);
-require $router->direct(Request::uri(), Request::method());
+Router::load('routes.php')->direct(Request::uri(), Request::method());

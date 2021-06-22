@@ -1,7 +1,10 @@
 <?php
 
-// var_dump($_POST['name']);
+// print_r($_SERVER['SERVER_NAME']);
+// print_r($_POST['name']);
 
+App::get('database')->insert('users', [
+    'name' => $_POST['name']
+]);
 
-
-// require 'views/about.view.php';
+header('Location: /');

@@ -9,4 +9,15 @@
                 <input name="name"></input>
                 <button type="submit">Submit</button>
             </form>
-            <?php require('partials/footer.php'); ?>
+        </header>
+        <div>
+            <ul>
+                <?php  foreach($users as $user): ?>
+
+                    <li><?= $user->name ?></li>
+
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </body>
+</html>
